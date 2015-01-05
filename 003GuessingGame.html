@@ -1,0 +1,46 @@
+<script>
+
+var your_latest_guess = prompt("This game took the previous player three guesses. Guess how many guesses this game USUALLY takes.");
+
+var average_guesses,
+	your_guesses,
+	times_played,
+	message,
+	win;
+
+average_guesses = 3;
+your_guesses = 0;
+times_played = 2;
+win = false;
+
+var play = function() {
+	if (your_latest_guess == average_guesses) {
+		your_guesses += 1;
+		win = true;
+		message = "Amazing! You did it! If you want to play again, click OK and refresh the page.";
+	}
+
+	else if (your_latest_guess > average_guesses) {
+		your_guesses += 1;
+		message = "Nope, too high! Guess again.";
+	}
+
+	else if (your_latest_guess < average_guesses) {
+		your_guesses += 1;
+		message = "Nope, too low! Guess again.";
+	}
+
+	else {
+		message = "That ... doesn't qualify as a guess?  Try again with a number."
+	}
+
+	average_guesses = Math.round((average_guesses + your_guesses)/times_played);
+	your_latest_guess = prompt(message);
+};
+
+while (win == false) {
+	play();
+}
+
+</script>
+
